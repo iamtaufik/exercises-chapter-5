@@ -10,5 +10,6 @@ app.use(express.json());
 
 // app.use('/', indexRouter);
 app.use('/api/v1/users', usersRouter);
+app.use('/api/v1/articles', require('./routes/articles.routes'));
 
 module.exports = app;
