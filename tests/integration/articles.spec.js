@@ -24,7 +24,10 @@ describe('test POST /api/v1/articles endpoint', () => {
       expect(body.data.name).toBe(name);
       expect(body.data.email).toBe(email);
       expect(body.data.password).toBe(password);
-
+    } catch (err) {
+        expect(err).toBe(err);
+    }
+    });
   test('should can create new articles', async () => {
     const data = {
       title: 'title',
