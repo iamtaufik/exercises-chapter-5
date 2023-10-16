@@ -15,6 +15,14 @@ module.exports = {
         },
       });
       return article;
+      } catch (err) {
+      throw err;
+      }
+  },
+  getAllArticles: async (user_id, title, body) => {
+    try {
+      let AllArticles = await prisma.articles.findMany({});
+      return AllArticles;
     } catch (err) {
       throw err;
     }
