@@ -1,11 +1,11 @@
-const { PrismaClient } = require('@prisma/client');
+const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
 
 module.exports = {
   createArticle: async (title, body, user_id) => {
     try {
       const user = await prisma.user.findUnique({ where: { id: user_id } });
-      if (!user) throw 'user tidak ditemukan';
+      if (!user) throw "user tidak ditemukan";
 
       const article = await prisma.articles.create({
         data: {
@@ -15,14 +15,27 @@ module.exports = {
         },
       });
       return article;
-      } catch (err) {
+    } catch (err) {
       throw err;
-      }
+    }
   },
   getAllArticles: async (user_id, title, body) => {
     try {
       let AllArticles = await prisma.articles.findMany({});
       return AllArticles;
+    } catch (err) {
+      throw err;
+    }
+  },
+
+  getUpdate: async (id, user_id, title, body) => {
+    try {
+      const updateArticle = await prisma.articles.update({
+        where: { id },
+        data: { user_id, title, body },
+      });
+
+      return updateArticle;
     } catch (err) {
       throw err;
     }
